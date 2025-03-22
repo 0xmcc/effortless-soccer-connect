@@ -7,12 +7,12 @@ const Hero: React.FC = () => {
   return (
     <div className="relative overflow-hidden bg-white">
       {/* Decorative circles */}
-      <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-soccer-green/10 blur-3xl"></div>
-      <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-soccer-blue/10 blur-3xl"></div>
+      <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-soccer-green/10 blur-3xl -z-10"></div>
+      <div className="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-soccer-blue/10 blur-3xl -z-10"></div>
       
-      <div className="container mx-auto px-4 py-24 flex flex-col-reverse lg:flex-row items-center">
+      <div className="container mx-auto px-4 py-24 flex flex-col-reverse lg:flex-row items-center relative z-10">
         {/* Text Content */}
-        <div className="lg:w-1/2 mt-10 lg:mt-0 lg:pr-10 animate-fade-in">
+        <div className="lg:w-1/2 mt-10 lg:mt-0 lg:pr-10 animate-fade-in relative z-20">
           <div className="inline-block px-4 py-1.5 mb-6 text-sm font-medium rounded-full text-soccer-green-dark bg-soccer-green/10 border border-soccer-green/20 animate-bounce-in">
             One-tap local soccer matchmaking
           </div>
@@ -60,10 +60,10 @@ const Hero: React.FC = () => {
         </div>
         
         {/* Image Section */}
-        <div className="lg:w-1/2 animate-fade-in">
+        <div className="lg:w-1/2 animate-fade-in relative z-20">
           <div className="relative">
             {/* Main image */}
-            <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-white/20 transform hover:scale-[1.01] transition-transform duration-500">
+            <div className="relative z-20 rounded-2xl overflow-hidden shadow-2xl border border-white/20 transform hover:scale-[1.01] transition-transform duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
                 alt="Soccer players on field" 
@@ -72,11 +72,11 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-soccer-green/20 rounded-full blur-2xl"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-soccer-blue/20 rounded-full blur-2xl"></div>
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-soccer-green/20 rounded-full blur-2xl -z-10"></div>
+            <div className="absolute -top-6 -left-6 w-32 h-32 bg-soccer-blue/20 rounded-full blur-2xl -z-10"></div>
             
             {/* Floating card 1 */}
-            <div className="absolute -left-10 top-1/4 glass-panel rounded-2xl p-4 shadow-lg animate-pulse-soft">
+            <div className="absolute -left-10 top-1/4 glass-panel rounded-2xl p-4 shadow-lg animate-pulse-soft z-30">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-soccer-orange/20 flex items-center justify-center">
                   <span className="text-soccer-orange-dark text-sm font-bold">5v5</span>
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
             </div>
             
             {/* Floating card 2 */}
-            <div className="absolute -right-8 bottom-1/4 glass-panel rounded-2xl p-4 shadow-lg animate-pulse-soft animation-delay-300">
+            <div className="absolute -right-8 bottom-1/4 glass-panel rounded-2xl p-4 shadow-lg animate-pulse-soft animation-delay-300 z-30">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-soccer-green/20 flex items-center justify-center">
                   <span className="text-soccer-green-dark text-sm font-bold">7v7</span>
@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
       </div>
       
       {/* Features Section */}
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {/* Feature 1 */}
           <div className="p-6 bg-white rounded-2xl shadow-sm border border-soccer-gray/40 hover-shadow animate-slide-in-bottom" style={{ animationDelay: '0.1s' }}>
