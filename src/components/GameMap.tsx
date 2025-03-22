@@ -20,7 +20,7 @@ const GameMap: React.FC<GameMapProps> = ({
   // In a real app, we would integrate with Google Maps API
   
   return (
-    <div className={cn("relative bg-soccer-gray rounded-2xl overflow-hidden", className)}>
+    <div className={cn("relative w-full h-full min-h-[500px] bg-soccer-gray rounded-2xl overflow-hidden", className)}>
       {/* Map background - this would be replaced with Google Maps */}
       <div className="absolute inset-0 bg-soccer-gray">
         <img 

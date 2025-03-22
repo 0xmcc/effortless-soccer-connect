@@ -1,4 +1,3 @@
-
 import React from 'react';
 import GameCard from './GameCard';
 import { Game } from '../utils/mockData';
@@ -79,7 +78,7 @@ const GameList: React.FC<GameListProps> = ({ games, isLoading = false }) => {
 
   return (
     <div className="space-y-6">
-      {games.map((game) => (
+      {games.map((game, index) => (
         <GameCard
           key={game.id}
           id={game.id}
@@ -93,8 +92,7 @@ const GameList: React.FC<GameListProps> = ({ games, isLoading = false }) => {
           playersJoined={game.playersJoined}
           maxPlayers={game.maxPlayers}
           status={game.status}
-          className="animate-slide-in-bottom"
-          style={{ animationDelay: `${parseInt(game.id) * 0.1}s` }}
+          className={`animate-slide-in-bottom delay-${index * 100}`}
         />
       ))}
     </div>

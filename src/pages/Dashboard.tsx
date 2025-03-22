@@ -6,7 +6,7 @@ import GameList from '../components/GameList';
 import GameMap from '../components/GameMap';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
-import { MapPin, List, Grid, Filter } from 'lucide-react';
+import { MapPin, List, Filter } from 'lucide-react';
 import { mockGames, filterGames } from '../utils/mockData';
 
 const Dashboard = () => {
@@ -98,14 +98,13 @@ const Dashboard = () => {
             <div className="md:col-span-2 lg:col-span-3">
               {/* View Content */}
               {view === 'map' ? (
-                <div className="bg-white rounded-2xl shadow-md border border-soccer-gray/40 overflow-hidden">
-                  <div className="h-[500px] lg:h-[700px]">
-                    <GameMap 
-                      games={filteredGames} 
-                      onGameSelect={setSelectedGameId}
-                      selectedGameId={selectedGameId}
-                    />
-                  </div>
+                <div className="bg-white rounded-2xl shadow-md border border-soccer-gray/40 overflow-hidden h-[600px]">
+                  <GameMap 
+                    games={filteredGames} 
+                    onGameSelect={setSelectedGameId}
+                    selectedGameId={selectedGameId}
+                    className="h-full"
+                  />
                   
                   {/* Game count */}
                   <div className="p-4 border-t border-soccer-gray/40 flex justify-between items-center">
