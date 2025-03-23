@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Game } from '../utils/mockData';
@@ -12,6 +11,8 @@ interface GameMapProps {
   className?: string;
 }
 
+const MAPBOX_TOKEN = "pk.eyJ1IjoibWFya29jYWx2b2NydXoiLCJhIjoiY2swZDBrNXFjMDMxZzNibG9vZXBhMWk2MiJ9.bIgAvOl_Uq2Ic9KeAGXElw";
+
 const GameMap: React.FC<GameMapProps> = ({
   games,
   onGameSelect,
@@ -22,25 +23,13 @@ const GameMap: React.FC<GameMapProps> = ({
   const map = useRef<mapboxgl.Map | null>(null);
   const markersRef = useRef<{ [key: string]: mapboxgl.Marker }>({});
   const popupsRef = useRef<{ [key: string]: mapboxgl.Popup }>({});
-  
-  const [mapboxToken, setMapboxToken] = useState<string>(
-    localStorage.getItem('mapbox_token') || ''
-  );
-  
-  const saveToken = () => {
-    if (mapboxToken) {
-      localStorage.setItem('mapbox_token', mapboxToken);
-      // Reload the component to initialize the map
-      window.location.reload();
-    }
-  };
 
   useEffect(() => {
-    if (!mapboxToken || !mapContainer.current || map.current) return;
+    if (!mapContainer.current || map.current) return;
     
     try {
-      // Initialize map
-      mapboxgl.accessToken = mapboxToken;
+      // Initialize map with the stored token
+      mapboxgl.accessToken = MAPBOX_TOKEN;
       
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
@@ -61,11 +50,6 @@ const GameMap: React.FC<GameMapProps> = ({
       });
     } catch (error) {
       console.error("Error initializing map:", error);
-      // Reset token if invalid
-      if (String(error).includes('Invalid access token')) {
-        localStorage.removeItem('mapbox_token');
-        setMapboxToken('');
-      }
     }
 
     return () => {
@@ -76,11 +60,11 @@ const GameMap: React.FC<GameMapProps> = ({
       // Remove map
       map.current?.remove();
     };
-  }, [mapboxToken]);
+  }, []);
 
   // Update markers when games or selectedGameId changes
   useEffect(() => {
-    if (!map.current || !mapboxToken) return;
+    if (!map.current) return;
     
     // Only add markers if map is loaded
     if (map.current.loaded()) {
@@ -168,33 +152,6 @@ const GameMap: React.FC<GameMapProps> = ({
       });
     }
   };
-
-  if (!mapboxToken) {
-    return (
-      <div className={cn("relative w-full h-full min-h-[500px] bg-white rounded-2xl p-6 flex flex-col justify-center items-center", className)}>
-        <h3 className="text-lg font-semibold mb-4">Mapbox API Token Required</h3>
-        <p className="text-sm text-gray-600 mb-6 text-center max-w-md">
-          Please enter your Mapbox public token to enable the interactive map.
-          You can get one for free at <a href="https://mapbox.com" target="_blank" rel="noopener noreferrer" className="text-soccer-green hover:underline">mapbox.com</a>
-        </p>
-        <div className="w-full max-w-md mb-4">
-          <input
-            type="text"
-            value={mapboxToken}
-            onChange={(e) => setMapboxToken(e.target.value)}
-            placeholder="Enter your Mapbox public token"
-            className="w-full p-2 border border-soccer-gray rounded-md"
-          />
-        </div>
-        <button 
-          onClick={saveToken}
-          className="px-4 py-2 bg-soccer-green text-white rounded-md hover:bg-soccer-green-dark transition-colors"
-        >
-          Save Token
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className={cn("relative w-full h-full min-h-[500px] bg-soccer-gray rounded-2xl overflow-hidden", className)}>
