@@ -98,13 +98,15 @@ const Dashboard = () => {
             <div className="md:col-span-2 lg:col-span-3">
               {/* View Content */}
               {view === 'map' ? (
-                <div className="bg-white rounded-2xl shadow-md border border-soccer-gray/40 overflow-hidden h-[600px]">
-                  <GameMap 
-                    games={filteredGames} 
-                    onGameSelect={setSelectedGameId}
-                    selectedGameId={selectedGameId}
-                    className="h-full"
-                  />
+                <div className="bg-white rounded-2xl shadow-md border border-soccer-gray/40 overflow-hidden flex flex-col h-[700px]">
+                  <div className="flex-grow">
+                    <GameMap 
+                      games={filteredGames} 
+                      onGameSelect={setSelectedGameId}
+                      selectedGameId={selectedGameId}
+                      className="h-full w-full"
+                    />
+                  </div>
                   
                   {/* Game count */}
                   <div className="p-4 border-t border-soccer-gray/40 flex justify-between items-center">
